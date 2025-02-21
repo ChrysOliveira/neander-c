@@ -2,11 +2,13 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void print_memory(uint8_t *bytes, int size, uint8_t ac, uint8_t pc) {
+void print_memory(uint8_t *bytes, int size, uint8_t ac, uint8_t pc, bool z,
+                  bool n) {
   size_t offset = 0;
 
   printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-  printf("AC: %d \nPC: %d\n", ac, pc);
+  printf("AC: %03d  | PC: %03d\n", ac, pc);
+  printf("Z : %s | N : %s\n", z ? "true": "false", n ? "true" : "false");
 
   while (offset < size) {
     printf("%08zx: ", offset);
@@ -35,14 +37,17 @@ int main(int argc, char const *argv[]) {
   uint8_t ac = 0, pc = 0;
   bool z = 0, n = 0;
 
+  const char *file_name = argv[1];
+
   /* FILE *file = fopen("soma.mem", "rb"); */
   /* FILE *file = fopen("multiplicacao.mem", "rb"); */
-  FILE *file = fopen("multiplicacao-negativo.mem", "rb");
+  /* FILE *file = fopen("multiplicacao-negativo.mem", "rb"); */
+  FILE *file = fopen(file_name, "rb");
   uint8_t bytes[516];
   fread(bytes, 1, 516, file);
   fclose(file);
 
-  print_memory(bytes, 516, ac, pc);
+  print_memory(bytes, 516, ac, pc, z, n);
 
   while (bytes[pc] != 0xF0) {
 
@@ -100,7 +105,7 @@ int main(int argc, char const *argv[]) {
     pc += 4;
   }
 
-  print_memory(bytes, 516, ac, pc);
+  print_memory(bytes, 516, ac, pc, z, n);
 
   return 0;
 }
