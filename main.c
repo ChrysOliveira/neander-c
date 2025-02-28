@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 void print_memory(uint8_t *bytes, int size, uint8_t ac, uint8_t pc, bool z,
                   bool n) {
@@ -8,7 +9,7 @@ void print_memory(uint8_t *bytes, int size, uint8_t ac, uint8_t pc, bool z,
 
   printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
   printf("AC: %03d  | PC: %03d\n", ac, pc);
-  printf("Z : %s | N : %s\n", z ? "true": "false", n ? "true" : "false");
+  printf("Z : %s | N : %s\n", z ? "true" : "false", n ? "true" : "false");
 
   while (offset < size) {
     printf("%08zx: ", offset);
@@ -33,18 +34,38 @@ int calcula_posicao(uint8_t hex) {
 }
 
 int main(int argc, char const *argv[]) {
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+    return 1;
+  }
 
   uint8_t ac = 0, pc = 0;
   bool z = 0, n = 0;
 
   const char *file_name = argv[1];
-
-  /* FILE *file = fopen("soma.mem", "rb"); */
-  /* FILE *file = fopen("multiplicacao.mem", "rb"); */
-  /* FILE *file = fopen("multiplicacao-negativo.mem", "rb"); */
   FILE *file = fopen(file_name, "rb");
+  if (!file) {
+    perror("Error opening file");
+    return 1;
+  }
+
   uint8_t bytes[516];
-  fread(bytes, 1, 516, file);
+  uint8_t file_id[4];         
+  fread(file_id, 1, 4, file); 
+
+  // 0x03 0x4E 0x44 0x52 -> ".NDR"
+  const uint8_t expected_id[] = {0x03, 0x4E, 0x44, 0x52};
+
+  if (memcmp(file_id, expected_id, 4) != 0) {
+    fprintf(stderr, "Invalid file identifier! Expected 03 4E 44 52\n");
+    fclose(file);
+    return 1;
+  }
+
+  printf("Valid file identifier detected: %02x %02x %02x %02x\n", file_id[0],
+         file_id[1], file_id[2], file_id[3]);
+
+  fread(bytes + 4, 1, 512, file);
   fclose(file);
 
   print_memory(bytes, 516, ac, pc, z, n);
