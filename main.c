@@ -43,6 +43,7 @@ int main(int argc, char const *argv[]) {
   bool z = 0, n = 0;
 
   const char *file_name = argv[1];
+  /* FILE *file = fopen("multiplicacao_entrega.mem", "rb"); */
   FILE *file = fopen(file_name, "rb");
   if (!file) {
     perror("Error opening file");
@@ -50,8 +51,8 @@ int main(int argc, char const *argv[]) {
   }
 
   uint8_t bytes[516];
-  uint8_t file_id[4];         
-  fread(file_id, 1, 4, file); 
+  uint8_t file_id[4];
+  fread(file_id, 1, 4, file);
 
   // 0x03 0x4E 0x44 0x52 -> ".NDR"
   const uint8_t expected_id[] = {0x03, 0x4E, 0x44, 0x52};
@@ -70,39 +71,60 @@ int main(int argc, char const *argv[]) {
 
   print_memory(bytes, 516, ac, pc, z, n);
 
+  // 0xF0 = HLT
   while (bytes[pc] != 0xF0) {
 
+    if (ac == 0) {
+      z = true;
+    } else {
+      z = false;
+    }
+
+    n = (ac & 0x80) != 0;
+
     switch (bytes[pc]) {
+      // NOP
     case 0x00:
       break;
+      // STA
     case 0x10:
       bytes[calcula_posicao(bytes[pc + 2])] = ac;
       break;
+      // LDA
     case 0x20:
       ac = bytes[calcula_posicao(bytes[pc + 2])];
       break;
+      // ADD
     case 0x30:
       ac += bytes[calcula_posicao(bytes[pc + 2])];
       break;
+      // OR
     case 0x40:
-      ac += bytes[calcula_posicao(bytes[pc + 2])] || ac;
+      ac = bytes[calcula_posicao(bytes[pc + 2])] | ac;
       break;
+      // AND
     case 0x50:
-      ac += bytes[calcula_posicao(bytes[pc + 2])] && ac;
+      ac = bytes[calcula_posicao(bytes[pc + 2])] & ac;
       break;
+      // NOT
     case 0x60:
-      ac += ~ac;
+      ac = ~ac;
+      pc += 2;
+      continue;
       break;
+      // JMP
     case 0x80:
       pc = calcula_posicao(bytes[pc + 2]);
       continue;
       break;
+      // JN
     case 0x90:
       if (n) {
         pc = calcula_posicao(bytes[pc + 2]);
         continue;
       }
       break;
+      // JZ
     case 0xA0:
       if (z) {
         pc = calcula_posicao(bytes[pc + 2]);
@@ -111,19 +133,8 @@ int main(int argc, char const *argv[]) {
       break;
     }
 
-    if (ac == 0) {
-      z = true;
-    } else {
-      z = false;
-    }
-
-    if (ac < 0) {
-      n = true;
-    } else {
-      n = false;
-    }
-
     pc += 4;
+    print_memory(bytes, 516, ac, pc, z, n);
   }
 
   print_memory(bytes, 516, ac, pc, z, n);

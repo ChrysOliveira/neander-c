@@ -2,7 +2,7 @@ CC = gcc
 # CFLAGS = -Wall -Wextra -g
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
-TARGET = main
+TARGET = neander
 
 all: $(TARGET)
 
