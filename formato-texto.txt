@@ -1,0 +1,230 @@
+00  20 81   LDA 81
+02  60      NOT
+03  30 83   ADD 83
+05  10 81   STA 81
+07  20 80   LDA 80
+09  AC 0D   JZ  0D
+0B  80 10   JMP 10
+0D  10 81   STA 81
+0F  00      NOP
+10  20 82   LDA 82
+12  30 81   ADD 81
+14  10 82   STA 82
+16  20 80   LDA 80
+18  90 22   JN  22
+1A  30 84   ADD 84
+1C  10 80   STA 80
+1E  A0 2A   JZ  2A
+20  80 10   JMP 10
+22  30 83   ADD 83
+24  10 80   STA 80
+26  A0 2C   JZ  2C
+28  80 10   JMP 10
+2A  80 35   JMP 35
+2C  20 82   LDA 82
+2E  60      NOT
+2F  30 83   ADD 83
+31  10 82   STA 82
+33  80 35   JMP 35
+35  20 82   LDA 82
+37  10 FF   STA FF
+39  00      NOP
+3A  00      NOP
+3B  00      NOP
+3C  00      NOP
+3D  00      NOP
+3E  00      NOP
+3F  00      NOP
+40  00      NOP
+41  00      NOP
+42  00      NOP
+43  00      NOP
+44  00      NOP
+45  00      NOP
+46  00      NOP
+47  00      NOP
+48  00      NOP
+49  00      NOP
+4A  00      NOP
+4B  00      NOP
+4C  00      NOP
+4D  00      NOP
+4E  00      NOP
+4F  00      NOP
+50  00      NOP
+51  00      NOP
+52  00      NOP
+53  00      NOP
+54  00      NOP
+55  00      NOP
+56  00      NOP
+57  00      NOP
+58  00      NOP
+59  00      NOP
+5A  00      NOP
+5B  00      NOP
+5C  00      NOP
+5D  00      NOP
+5E  00      NOP
+5F  00      NOP
+60  00      NOP
+61  00      NOP
+62  00      NOP
+63  00      NOP
+64  00      NOP
+65  00      NOP
+66  00      NOP
+67  00      NOP
+68  00      NOP
+69  00      NOP
+6A  00      NOP
+6B  00      NOP
+6C  00      NOP
+6D  00      NOP
+6E  00      NOP
+6F  00      NOP
+70  00      NOP
+71  00      NOP
+72  00      NOP
+73  00      NOP
+74  00      NOP
+75  00      NOP
+76  00      NOP
+77  00      NOP
+78  00      NOP
+79  00      NOP
+7A  00      NOP
+7B  00      NOP
+7C  00      NOP
+7D  00      NOP
+7E  00      NOP
+7F  00      NOP
+
+80  00     
+81  FB     
+82  EC     
+83  01     
+84  FF     
+85  00     
+86  00     
+87  00     
+88  00     
+89  00     
+8A  00     
+8B  00     
+8C  00     
+8D  00     
+8E  00     
+8F  00     
+90  00     
+91  00     
+92  00     
+93  00     
+94  00     
+95  00     
+96  00     
+97  00     
+98  00     
+99  00     
+9A  00     
+9B  00     
+9C  00     
+9D  00     
+9E  00     
+9F  00     
+A0  00     
+A1  00     
+A2  00     
+A3  00     
+A4  00     
+A5  00     
+A6  00     
+A7  00     
+A8  00     
+A9  00     
+AA  00     
+AB  00     
+AC  00     
+AD  00     
+AE  00     
+AF  00     
+B0  00     
+B1  00     
+B2  00     
+B3  00     
+B4  00     
+B5  00     
+B6  00     
+B7  00     
+B8  00     
+B9  00     
+BA  00     
+BB  00     
+BC  00     
+BD  00     
+BE  00     
+BF  00     
+C0  00     
+C1  00     
+C2  00     
+C3  00     
+C4  00     
+C5  00     
+C6  00     
+C7  00     
+C8  00     
+C9  00     
+CA  00     
+CB  00     
+CC  00     
+CD  00     
+CE  00     
+CF  00     
+D0  00     
+D1  00     
+D2  00     
+D3  00     
+D4  00     
+D5  00     
+D6  00     
+D7  00     
+D8  00     
+D9  00     
+DA  00     
+DB  00     
+DC  00     
+DD  00     
+DE  00     
+DF  00     
+E0  00     
+E1  00     
+E2  00     
+E3  00     
+E4  00     
+E5  00     
+E6  00     
+E7  00     
+E8  00     
+E9  00     
+EA  00     
+EB  00     
+EC  00     
+ED  00     
+EE  00     
+EF  00     
+F0  00     
+F1  00     
+F2  00     
+F3  00     
+F4  00     
+F5  00     
+F6  00     
+F7  00     
+F8  00     
+F9  00     
+FA  00     
+FB  00     
+FC  00     
+FD  00     
+FE  00     
+FF  EC     

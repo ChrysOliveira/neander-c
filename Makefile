@@ -1,5 +1,5 @@
 CC = gcc
-# CFLAGS = -Wall -Wextra -g
+CFLAGS = -W -Wall -pedantic -std=c99
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 TARGET = neander
