@@ -1,6 +1,10 @@
-# Emulador Neander em C
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/_Tqfmbvi)
+# Entrega Parcial 1
+Chrystian Medeiros de Oliveira
 
-Aluno: Chrystian Medeiros de Oliveira
+
+## Observações
+# Emulador Neander em C
 
 Este projeto é um emulador do [Neander](https://www.inf.ufrgs.br/arq/wiki/doku.php?id=neander) escrito em C. Ele permite executar arquivos binários do Neander sem usar o software oficial.
 
