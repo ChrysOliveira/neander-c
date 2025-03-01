@@ -34,17 +34,17 @@ int calcula_posicao(uint8_t hex) {
 }
 
 int main(int argc, char const *argv[]) {
-  /* if (argc < 2) { */
-  /*   fprintf(stderr, "Usage: %s <filename>\n", argv[0]); */
-  /*   return 1; */
-  /* } */
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+    return 1;
+  }
 
   uint8_t ac = 0, pc = 0;
   bool z = 0, n = 0;
 
-  /* const char *file_name = argv[1]; */
-  FILE *file = fopen("multiplicacao-entrega.mem", "rb");
-  /* FILE *file = fopen(file_name, "rb"); */
+  const char *file_name = argv[1];
+  /* FILE *file = fopen("multiplicacao-entrega.mem", "rb"); */
+  FILE *file = fopen(file_name, "rb");
   if (!file) {
     perror("Error opening file");
     return 1;
